@@ -28,9 +28,10 @@ function createLorennaciText() {
 		let newDiv = document.createElement('li');
 		newDiv.classList.add('fibBoxes')
 		textContainer.appendChild(newDiv)
-		newDiv.textContent = LoremIpsum.words(element);
-		let wordCount = newDiv.textContent.split(/\s+/).length;
-		newDiv.textContent =`${wordCount}: ${LoremIpsum.words(element)}` ;
+		let loremWords = LoremIpsum.words(element)
+		console.log(loremWords.length)
+		let wordCount = loremWords.split(/\s+/).length;
+		newDiv.textContent = `${wordCount}: ` + loremWords
 	});
 };
 
