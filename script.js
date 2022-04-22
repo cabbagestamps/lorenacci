@@ -11,6 +11,7 @@ const fibonacci = function(input) {
       storage[i] = fib
       fib = fib + storage[i-1]  
   }
+  storage[storage.length] = fib
   obj = {
     fibArray: storage,
     fibNumber: fib
@@ -46,6 +47,7 @@ let button = document.querySelector('button');
 
 button.addEventListener('click', () => {
 	removeLorennaciText()
+	 
 	fibonacci(prompt('How many?', 10))
 	createLorennaciText()
 })
