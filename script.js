@@ -18,27 +18,38 @@ const fibonacci = function(input) {
   return obj
   };
 
-let text = document.querySelector('#text-container');
-//()
+let textContainer = document.querySelector('#text-container');
+
 
 
 function createLorennaciText() {
 	obj.fibArray.forEach(element => {	
-		let newDiv = document.createElement('div');
+		let newDiv = document.createElement('li');
 		newDiv.classList.add('fibBoxes')
-		text.append(newDiv)
-		console.log(LoremIpsum.words(element)) 
-		newDiv.textContent =`| ${LoremIpsum.words(element)}`;
+		textContainer.appendChild(newDiv)
+		newDiv.textContent = LoremIpsum.words(element);
+		let wordCount = newDiv.textContent.split(/\s+/).length;
+		newDiv.textContent =`${wordCount}: ${LoremIpsum.words(element)}` ;
 	});
 };
 
 
 
-
-
-
+function removeLorennaciText() {
+	while (textContainer.firstChild) {
+		textContainer.removeChild(textContainer.firstChild)
+	}
+}
  
  
+let button = document.querySelector('button');
+
+button.addEventListener('click', () => {
+	removeLorennaciText()
+	fibonacci(prompt('How many?', 10))
+	createLorennaciText()
+})
+
  /*
  * Copyright 2010 Oliver C Dodd http://01001111.net
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
