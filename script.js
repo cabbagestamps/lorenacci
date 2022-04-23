@@ -4,6 +4,9 @@ const fibonacci = function(input) {
   if (input<0) {
       return 'OOPS'
   }
+  if (input>25) {
+	  input=25;
+  }
   input = parseInt(input)
   let fib = 1;
   let storage = [1]
@@ -23,13 +26,12 @@ let textContainer = document.querySelector('#text-container');
 
 
 
-function createLorennaciText() {
+function createLorenacciText() {
 	obj.fibArray.forEach(element => {	
 		let newDiv = document.createElement('li');
 		newDiv.classList.add('fibBoxes')
 		textContainer.appendChild(newDiv)
 		let loremWords = LoremIpsum.words(element)
-		console.log(loremWords.length)
 		let wordCount = loremWords.split(/\s+/).length;
 		newDiv.textContent = `${wordCount}: ` + loremWords
 	});
@@ -37,9 +39,26 @@ function createLorennaciText() {
 
 
 
-function removeLorennaciText() {
+function removeLorenacciText() {
 	while (textContainer.firstChild) {
 		textContainer.removeChild(textContainer.firstChild)
+	}
+}
+
+
+function changeFontSize() {
+	let nodeList = document.querySelectorAll('li');
+	let array = Array.prototype.slice.call(nodeList);
+	for (i=array.length; i>0; i--) {
+		array[array.length-i].style.fontSize = `${10+i}px`;
+	}
+}
+
+function changeOpacity() {
+	let nodeList = document.querySelectorAll('li');
+	let array = Array.prototype.slice.call(nodeList);
+	for(i=0; i<array.length; i++) {
+		array[i].style.opacity = `${100-(3*i)}%`;
 	}
 }
  
@@ -47,10 +66,11 @@ function removeLorennaciText() {
 let button = document.querySelector('button');
 
 button.addEventListener('click', () => {
-	removeLorennaciText()
-	 
-	fibonacci(prompt('How many?', 10))
-	createLorennaciText()
+	removeLorenacciText()
+	fibonacci(prompt('How many? (Max: 25)', 10))
+	createLorenacciText()
+	changeFontSize()
+	changeOpacity()
 })
 
  /*
