@@ -24,19 +24,17 @@ const fibonacci = function(input) {
 
 let textContainer = document.querySelector('#text-container');
 
-
-
 function createLorenacciText() {
 	obj.fibArray.forEach(element => {	
 		let newDiv = document.createElement('li');
 		newDiv.classList.add('fibBoxes')
 		textContainer.appendChild(newDiv)
 		let loremWords = LoremIpsum.words(element)
+		let capitalised = loremWords.slice(0, 1).toUpperCase() + loremWords.slice(1)
 		let wordCount = loremWords.split(/\s+/).length;
-		newDiv.textContent = `${wordCount}: ` + loremWords
+		newDiv.textContent = `${wordCount}: ` + capitalised
 	});
 };
-
 
 
 function removeLorenacciText() {
